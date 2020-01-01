@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Albert">
 <meta property="og:description" content="各垃圾收集器对比  Serial 串行收集器　　串行收集器组合 Serial + Serial Old   开启选项：-XX:+SerialGC串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。适用于内存小，单核场景，一般 Client 使用关键词:　年轻代复制算法，串行回收，STW 并行收集器并行收集器组合 Parallel Sc">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://www.nieyu.net/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
+<meta property="og:image" content="http://www.nieyu.net/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
 <meta property="article:published_time" content="2020-01-01T11:43:26.000Z">
 <meta property="article:modified_time" content="2020-01-01T13:16:10.359Z">
 <meta property="article:author" content="Albert">
@@ -27,7 +27,7 @@
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="垃圾收集器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.nieyu.net/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
+<meta name="twitter:image" content="http://www.nieyu.net/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
     
 
     
@@ -35,31 +35,31 @@
     
 
     
-<link rel="stylesheet" href="/blogs/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/blogs/libs/titillium-web/styles.css">
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
 
     
-<link rel="stylesheet" href="/blogs/libs/source-code-pro/styles.css">
-
-
-    
-<link rel="stylesheet" href="/blogs/css/style.css">
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
 
     
-<script src="/blogs/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+
 
     
-    
-        
-<link rel="stylesheet" href="/blogs/libs/lightgallery/css/lightgallery.min.css">
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
     
         
-<link rel="stylesheet" href="/blogs/libs/justified-gallery/justifiedGallery.min.css">
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
 
     
     
@@ -76,7 +76,7 @@
             <div class="container-inner">
                 <div id="header-title">
                     <h1 class="logo-wrap">
-                        <a href="/blogs/" class="logo"></a>
+                        <a href="/" class="logo"></a>
                     </h1>
                     
                 </div>
@@ -86,7 +86,7 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/blogs/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                         </ul>
@@ -119,14 +119,14 @@
             TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
-        ROOT_URL: '/blogs/',
-        CONTENT_URL: '/blogs/content.json',
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="/blogs/js/insight.js"></script>
+<script src="/js/insight.js"></script>
 
 
 </div>
@@ -144,7 +144,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/blogs/categories/JVM/">JVM</a>
+    <a class="page-title-link" href="/categories/JVM/">JVM</a>
     </h1>
 </div>
 
@@ -167,7 +167,7 @@
                 
     <div class="article-date">
       <i class="fa fa-calendar"></i>
-      <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="article-date">
+      <a href="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="article-date">
          <time datetime="2020-01-01T11:43:26.000Z" itemprop="datePublished">2020-01-01</time>
       </a>
     </div>
@@ -178,30 +178,30 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blogs/tags/JVM/" rel="tag">JVM</a>, <a class="tag-link" href="/blogs/tags/java/" rel="tag">java</a>, <a class="tag-link" href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a>
+        <a class="tag-link" href="/tags/JVM/" rel="tag">JVM</a>, <a class="tag-link" href="/tags/java/" rel="tag">java</a>, <a class="tag-link" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a>
     </div>
 
                 
 
                 
 
-                阅读数量:<span id="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="垃圾收集器总结"></span>次
+                阅读数量:<span id="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="垃圾收集器总结"></span>次
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="各垃圾收集器对比"><a href="#各垃圾收集器对比" class="headerlink" title="各垃圾收集器对比"></a>各垃圾收集器对比</h2><img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg" class="" title="各垃圾收集器对比">
+            <h2 id="各垃圾收集器对比"><a href="#各垃圾收集器对比" class="headerlink" title="各垃圾收集器对比"></a>各垃圾收集器对比</h2><img src="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg" class="" title="各垃圾收集器对比">
 
 <h3 id="Serial-串行收集器"><a href="#Serial-串行收集器" class="headerlink" title="Serial 串行收集器　　"></a>Serial 串行收集器　　</h3><p>串行收集器组合 <strong>Serial + Serial Old</strong></p>
-<img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93-%E4%B8%B2%E8%A1%8C%E6%94%B6%E9%9B%86%E5%99%A8.png" class="" title="串行收集器">
+<img src="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93-%E4%B8%B2%E8%A1%8C%E6%94%B6%E9%9B%86%E5%99%A8.png" class="" title="串行收集器">
 
 <p><strong>开启选项</strong>：-XX:+SerialGC<br>串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。<br><strong>适用于内存小，单核场景</strong>，一般 Client 使用<br><strong>关键词</strong>:　年轻代复制算法，串行回收，STW</p>
 <h3 id="并行收集器"><a href="#并行收集器" class="headerlink" title="并行收集器"></a>并行收集器</h3><p>并行收集器组合 <strong>Parallel Scavenge + Parallel Old</strong></p>
-<img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191224131338.png" class="" title="并行收集器">
+<img src="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191224131338.png" class="" title="并行收集器">
 
 <p><strong>开启选项</strong>：-XX:+UseParallelGC 或 -XX:+UseParallelOldGC（可互相激活）<br>并行收集器拥有高吞吐量，在 STW 期间采用并行收集，年轻带采用复制算法，老年代标记-整理<br>通过参数：-XX:MaxGCPauseMills 和 -XX:GCTimeRatio 可调节<br><strong>适用于吞吐量高于延迟的场景</strong></p>
 <h3 id="并发标记清除收集器"><a href="#并发标记清除收集器" class="headerlink" title="并发标记清除收集器"></a>并发标记清除收集器</h3><p>并发标记清除收集器组合 <strong>ParNew + CMS + Serial Old</strong></p>
-<img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%94%B6%E9%9B%86%E5%99%A8.png" class="" title="并发标记清除收集器">
+<img src="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%94%B6%E9%9B%86%E5%99%A8.png" class="" title="并发标记清除收集器">
 
 <p><strong>开启选项</strong>：-XX:+UseConcMarkSweepGC<br>CMS更加关注延迟，年轻代采用 STW 方式并行收集，老年代采用 CMS 垃圾回收，其过程为：<strong>初始标记，并发标记，重新标记，并发清除</strong>。Remark 阶段主要是再次标记那些应用线程修改而错过的可达对象<br><strong>适用于堆内存大，CPU核数量多</strong><br>CMS <strong>缺点</strong>：</p>
 <ul>
@@ -284,7 +284,7 @@
             "name": "Albert"
         },
         "headline": "垃圾收集器总结",
-        "image": "http://www.nieyu.net/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg",
+        "image": "http://www.nieyu.net/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg",
         "keywords": "JVM java 垃圾收集器",
         "genre": "JVM",
         "datePublished": "2020-01-01",
@@ -327,7 +327,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
                 <li>
-                    <a class="social-tooltip" title="twitter" href="/blogs/" target="_blank" rel="noopener">
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
                         <i class="icon fa fa-twitter"></i>
                     </a>
                 </li>
@@ -355,7 +355,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
         
 <nav id="article-nav">
     
-        <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
@@ -384,7 +384,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="thumbnail">
+                            <a href="/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -395,8 +395,8 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/HBase/">HBase</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="title">HBase数据结构及特性</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/HBase/">HBase</a></p>
+                            <p class="item-title"><a href="/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="title">HBase数据结构及特性</a></p>
                             <p class="item-date"><time datetime="2020-01-01T12:35:05.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -404,10 +404,10 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="thumbnail">
+                            <a href="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="thumbnail">
     
     
-        <span style="background-image:url(/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png)" alt="spring国际化" class="thumbnail-image"></span>
+        <span style="background-image:url(/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png)" alt="spring国际化" class="thumbnail-image"></span>
     
     
 </a>
@@ -415,8 +415,8 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/spring/">spring</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="title">spring国际化</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/spring/">spring</a></p>
+                            <p class="item-title"><a href="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="title">spring国际化</a></p>
                             <p class="item-date"><time datetime="2020-01-01T12:31:01.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -424,10 +424,10 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
+                            <a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
     
     
-        <span style="background-image:url(/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
+        <span style="background-image:url(/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
     
     
 </a>
@@ -435,8 +435,8 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="title">G1垃圾收集器</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="title">G1垃圾收集器</a></p>
                             <p class="item-date"><time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -444,10 +444,10 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
+                            <a href="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
     
     
-        <span style="background-image:url(/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg)" alt="垃圾收集器总结" class="thumbnail-image"></span>
+        <span style="background-image:url(/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg)" alt="垃圾收集器总结" class="thumbnail-image"></span>
     
     
 </a>
@@ -455,8 +455,8 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="title">垃圾收集器总结</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="title">垃圾收集器总结</a></p>
                             <p class="item-date"><time datetime="2020-01-01T11:43:26.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -470,7 +470,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/HBase/">HBase</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HBase/">HBase</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -480,7 +480,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">arxius</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -490,7 +490,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/spring/" rel="tag">spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -500,7 +500,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
-            <a href="/blogs/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a> <a href="/blogs/tags/java/" style="font-size: 10px;">java</a> <a href="/blogs/tags/spring/" style="font-size: 10px;">spring</a> <a href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">国际化</a> <a href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
+            <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">国际化</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
         </div>
     </div>
 
@@ -535,7 +535,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
             <div class="credit">
                 <h1 class="logo-wrap">
-                    <a href="/blogs/" class="logo"></a>
+                    <a href="/" class="logo"></a>
                 </h1>
                 <p>&copy; 2020 Albert</p>
                 
@@ -615,36 +615,36 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
 
     
         
-<script src="/blogs/libs/lightgallery/js/lightgallery.min.js"></script>
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-pager.min.js"></script>
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-autoplay.min.js"></script>
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-zoom.min.js"></script>
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-hash.min.js"></script>
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-share.min.js"></script>
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-video.min.js"></script>
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
 
     
     
         
-<script src="/blogs/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
     
     
@@ -655,7 +655,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
 
 <!-- Custom Scripts -->
 
-<script src="/blogs/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 
     </div>

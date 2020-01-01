@@ -19,13 +19,13 @@
 <meta property="og:site_name" content="Albert">
 <meta property="og:description" content="G1 内存模型分代模型　　  G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：  由于分区的内存设计，并不要求分代的内存具有物理上的连续性 RSet 的设计，使得垃圾回收时不用整堆扫描 年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://www.nieyu.net/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://www.nieyu.net/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
 <meta property="article:published_time" content="2020-01-01T12:22:00.000Z">
 <meta property="article:modified_time" content="2020-01-01T12:27:14.541Z">
 <meta property="article:author" content="Albert">
 <meta property="article:tag" content="JVM, java, 垃圾收集器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.nieyu.net/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
+<meta name="twitter:image" content="http://www.nieyu.net/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
     
 
     
@@ -33,31 +33,31 @@
     
 
     
-<link rel="stylesheet" href="/blogs/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/blogs/libs/titillium-web/styles.css">
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
 
     
-<link rel="stylesheet" href="/blogs/libs/source-code-pro/styles.css">
-
-
-    
-<link rel="stylesheet" href="/blogs/css/style.css">
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
 
     
-<script src="/blogs/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+
 
     
-    
-        
-<link rel="stylesheet" href="/blogs/libs/lightgallery/css/lightgallery.min.css">
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
     
         
-<link rel="stylesheet" href="/blogs/libs/justified-gallery/justifiedGallery.min.css">
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
 
     
     
@@ -74,7 +74,7 @@
             <div class="container-inner">
                 <div id="header-title">
                     <h1 class="logo-wrap">
-                        <a href="/blogs/" class="logo"></a>
+                        <a href="/" class="logo"></a>
                     </h1>
                     
                 </div>
@@ -84,7 +84,7 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/blogs/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                         </ul>
@@ -117,14 +117,14 @@
             TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
-        ROOT_URL: '/blogs/',
-        CONTENT_URL: '/blogs/content.json',
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="/blogs/js/insight.js"></script>
+<script src="/js/insight.js"></script>
 
 
 </div>
@@ -142,7 +142,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/blogs/categories/JVM/">JVM</a>
+    <a class="page-title-link" href="/categories/JVM/">JVM</a>
     </h1>
 </div>
 
@@ -165,7 +165,7 @@
                 
     <div class="article-date">
       <i class="fa fa-calendar"></i>
-      <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="article-date">
+      <a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="article-date">
          <time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time>
       </a>
     </div>
@@ -176,19 +176,19 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a>
+        <a class="tag-link" href="/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a>
     </div>
 
                 
 
                 
 
-                阅读数量:<span id="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="leancloud_visitors" data-flag-title="G1垃圾收集器"></span>次
+                阅读数量:<span id="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="leancloud_visitors" data-flag-title="G1垃圾收集器"></span>次
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="G1-内存模型"><a href="#G1-内存模型" class="headerlink" title="G1 内存模型"></a>G1 内存模型</h2><h3 id="分代模型"><a href="#分代模型" class="headerlink" title="分代模型　　"></a>分代模型　　</h3><img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png" class="" title="G1内存分代模型">
+            <h2 id="G1-内存模型"><a href="#G1-内存模型" class="headerlink" title="G1 内存模型"></a>G1 内存模型</h2><h3 id="分代模型"><a href="#分代模型" class="headerlink" title="分代模型　　"></a>分代模型　　</h3><img src="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png" class="" title="G1内存分代模型">
 
 <p>G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：</p>
 <ul>
@@ -198,10 +198,10 @@
 </ul>
 <p><strong>什么是 TLAB</strong><br>TLAB全称<strong>ThreadLocalAllocBuffer</strong>，是线程的一块私有内存,在线程初始化时，同时也会申请一块指定大小的内存，只给当前线程使用，这样每个线程都单独拥有一个Buffer，如果需要分配内存，就在自己的Buffer上分配，这样就不存在竞争的情况，从而均摊对GC堆（eden区）里共享的分配指针做更新而带来的同步开销，当线程 TLAB 用完，则需要原子操作去 Eden 申请一块新的 TLAB</p>
 <p><strong>什么是 PLAB</strong><br>每次垃圾收集时，GC 线程可以独占一个本地缓冲区(LAB)，用户对象的拷贝和转移，Eden -&gt; Suvivor, Eden/suvivor -&gt; Survivor/Old ，和 TLAB 一样，GC 独占本地缓冲区进行操作，该部分成为 <strong>晋升本地缓冲区(PLAB)</strong></p>
-<h3 id="内存分区模型"><a href="#内存分区模型" class="headerlink" title="内存分区模型"></a>内存分区模型</h3><img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" class="" title="G1内存模型">
+<h3 id="内存分区模型"><a href="#内存分区模型" class="headerlink" title="内存分区模型"></a>内存分区模型</h3><img src="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" class="" title="G1内存模型">
 
 <p><strong>分区(Region)</strong> G1将内存分位若干个大小相等的区域(Region)，启动时通过参数 <strong>-XX:G1HeapRegionSize=n</strong> 可指定分区大小（1MB~32MB，且必须是2的幂），默认将整堆划分为2048个分区。<br>每次分配对象逐渐的使用内存，同时每一个Region也不确定分配给某个代服务<br><strong>卡片(Card)</strong> card 是堆内存最小可用粒度，每个分区又被分位若干个大小相等的card(512Byte),每次分配对象将会分配物理上连续的若干个card，所有分区的card被记录在<strong>Global Card Table</strong>中，当查找Region内的对象的引用时，可以通过card引用记录查询(RSet中)，内存的回收也是针对指定Region的card进行处理</p>
-<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%A4%A7%E5%AF%B9%E8%B1%A1%E5%88%86%E9%85%8D.png" class="" title="G1大对象分配">
+<img src="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%A4%A7%E5%AF%B9%E8%B1%A1%E5%88%86%E9%85%8D.png" class="" title="G1大对象分配">
 
 <p><strong>大对象分配</strong> G1的大对象内存分配由于复制等成本，不在TLAB进行分配，而是直接分配到老年代，同时若G1发现没有引用指向大对象，则直接在年轻代回收中将大对象Region回收掉。大对象占有多个物理上连续的Region，开始的分区被称为　<strong>开始巨型（StartsHumongous）</strong>　，后续Region被成为　<strong>连续巨型（ContinuesHumongous）</strong>　,大对象的分配成本非常高:</p>
 <ul>
@@ -230,20 +230,20 @@
 <li>白色：还没有被标记的节点</li>
 </ul>
 <p><strong>对象误标</strong>  在并发标记阶段，GC 线程和应用线程是并发执行的，当一个对象被标记之后，很有可能被应用线程篡改引用关系，当一个黑色对象在并发标记阶段被删除了引用，那么它实际上成为了一个误标的浮动垃圾，该对象只有再下一次GC中处理</p>
-<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%E9%98%B6%E6%AE%B5%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%AF%E6%A0%87.png" class="" title="对象的误标">
+<img src="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%E9%98%B6%E6%AE%B5%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%AF%E6%A0%87.png" class="" title="对象的误标">
 
 <p><strong>对象的漏标</strong>  漏标的现象比误标更严重，当一个存活对象被删除会导致严重后果，在以下情况下时，会存在漏标的现象:</p>
 <ol>
 <li>并发标记时，应用线程给一个黑色对象赋值了白色对象</li>
 <li>并发标记阶段，用用线程删除了所有灰色对象到白色对象的引用</li>
 </ol>
-<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%BC%8F%E6%A0%87.png" class="" title="G1对象的漏标">
+<img src="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%BC%8F%E6%A0%87.png" class="" title="G1对象的漏标">
 
 <p>如上图所示当对象E被添加了黑色对象A的引用后，因为A是黑色对象，所以会被认为他的所有子节点都已经被扫描过不再扫描。B灰色对象删除了E的引用，那么此时E将不会再被扫描处理，则会产生漏标的现象</p>
 <p><strong>G1 GC 如何处理漏标？</strong>　　</p>
 <p>对以上两种情况，根据 post-write barrier 和 pre-write barrier 栅栏的记录satb mark queue中，和RSet的实现类似，每个应用线程都自带一个satb mark queue，下一轮标记阶段重新扫描这些新增和删除的引用关系则可以解决这个问题</p>
 <p><strong>SATB(snapshot-at-the-beginning)算法</strong><br>Region包含了5个指针，分别是bottom、previous TAMS、next TAMS、top和end</p>
-<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-SATB%E7%AE%97%E6%B3%95%E8%BF%87%E7%A8%8B.png" class="" title="SATB算法">
+<img src="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-SATB%E7%AE%97%E6%B3%95%E8%BF%87%E7%A8%8B.png" class="" title="SATB算法">
 
 <p>其中previous TAMS、next TAMS是前后两次发生并发标记时的位置，全称top-at-mark-start</p>
 <ol>
@@ -361,7 +361,7 @@
             "name": "Albert"
         },
         "headline": "G1垃圾收集器",
-        "image": "http://www.nieyu.net/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png",
+        "image": "http://www.nieyu.net/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png",
         "keywords": "JVM, java, 垃圾收集器",
         "genre": "JVM",
         "datePublished": "2020-01-01",
@@ -404,7 +404,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
                 <li>
-                    <a class="social-tooltip" title="twitter" href="/blogs/" target="_blank" rel="noopener">
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
                         <i class="icon fa fa-twitter"></i>
                     </a>
                 </li>
@@ -432,7 +432,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
         
 <nav id="article-nav">
     
-        <a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
@@ -443,7 +443,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     </a>
     
     
-        <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">垃圾收集器总结</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
@@ -467,7 +467,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="thumbnail">
+                            <a href="/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -478,8 +478,8 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/HBase/">HBase</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="title">HBase数据结构及特性</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/HBase/">HBase</a></p>
+                            <p class="item-title"><a href="/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" class="title">HBase数据结构及特性</a></p>
                             <p class="item-date"><time datetime="2020-01-01T12:35:05.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -487,10 +487,10 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="thumbnail">
+                            <a href="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="thumbnail">
     
     
-        <span style="background-image:url(/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png)" alt="spring国际化" class="thumbnail-image"></span>
+        <span style="background-image:url(/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png)" alt="spring国际化" class="thumbnail-image"></span>
     
     
 </a>
@@ -498,8 +498,8 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/spring/">spring</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="title">spring国际化</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/spring/">spring</a></p>
+                            <p class="item-title"><a href="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="title">spring国际化</a></p>
                             <p class="item-date"><time datetime="2020-01-01T12:31:01.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -507,10 +507,10 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
+                            <a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
     
     
-        <span style="background-image:url(/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
+        <span style="background-image:url(/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
     
     
 </a>
@@ -518,8 +518,8 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="title">G1垃圾收集器</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="title">G1垃圾收集器</a></p>
                             <p class="item-date"><time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -527,10 +527,10 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
+                            <a href="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
     
     
-        <span style="background-image:url(/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg)" alt="垃圾收集器总结" class="thumbnail-image"></span>
+        <span style="background-image:url(/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg)" alt="垃圾收集器总结" class="thumbnail-image"></span>
     
     
 </a>
@@ -538,8 +538,8 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
-                            <p class="item-title"><a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="title">垃圾收集器总结</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="title">垃圾收集器总结</a></p>
                             <p class="item-date"><time datetime="2020-01-01T11:43:26.000Z" itemprop="datePublished">2020-01-01</time></p>
                         </div>
                     </li>
@@ -553,7 +553,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/HBase/">HBase</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HBase/">HBase</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -563,7 +563,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">arxius</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -573,7 +573,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/spring/" rel="tag">spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -583,7 +583,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
-            <a href="/blogs/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a> <a href="/blogs/tags/java/" style="font-size: 10px;">java</a> <a href="/blogs/tags/spring/" style="font-size: 10px;">spring</a> <a href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">国际化</a> <a href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
+            <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">国际化</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
         </div>
     </div>
 
@@ -618,7 +618,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
             <div class="credit">
                 <h1 class="logo-wrap">
-                    <a href="/blogs/" class="logo"></a>
+                    <a href="/" class="logo"></a>
                 </h1>
                 <p>&copy; 2020 Albert</p>
                 
@@ -698,36 +698,36 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
 
     
         
-<script src="/blogs/libs/lightgallery/js/lightgallery.min.js"></script>
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-pager.min.js"></script>
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-autoplay.min.js"></script>
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-zoom.min.js"></script>
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-hash.min.js"></script>
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-share.min.js"></script>
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
 
         
-<script src="/blogs/libs/lightgallery/js/lg-video.min.js"></script>
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
 
     
     
         
-<script src="/blogs/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
     
     
@@ -738,7 +738,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
 
 <!-- Custom Scripts -->
 
-<script src="/blogs/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 
     </div>

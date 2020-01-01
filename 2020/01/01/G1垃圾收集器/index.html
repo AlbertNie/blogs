@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>G1垃圾收集器 | Albert</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="JVM, java, 垃圾收集器" />
+    
+    <meta name="description" content="G1 内存模型分代模型　　  G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：  由于分区的内存设计，并不要求分代的内存具有物理上的连续性 RSet 的设计，使得垃圾回收时不用整堆扫描 年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="G1垃圾收集器">
+<meta property="og:url" content="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/index.html">
+<meta property="og:site_name" content="Albert">
+<meta property="og:description" content="G1 内存模型分代模型　　  G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：  由于分区的内存设计，并不要求分代的内存具有物理上的连续性 RSet 的设计，使得垃圾回收时不用整堆扫描 年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
+<meta property="article:published_time" content="2020-01-01T12:22:00.000Z">
+<meta property="article:modified_time" content="2020-01-01T12:27:14.541Z">
+<meta property="article:author" content="Albert">
+<meta property="article:tag" content="JVM, java, 垃圾收集器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
+    
+
+    
+        <link rel="alternate" href="/" title="Albert" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/blogs/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/blogs/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/blogs/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/blogs/css/style.css">
+
+
+    
+<script src="/blogs/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/blogs/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/blogs/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/blogs/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/blogs/">Home</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blogs/',
+        CONTENT_URL: '/blogs/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blogs/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/blogs/categories/JVM/">JVM</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-G1垃圾收集器" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        G1垃圾收集器
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="article-date">
+         <time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time>
+      </a>
+    </div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="G1-内存模型"><a href="#G1-内存模型" class="headerlink" title="G1 内存模型"></a>G1 内存模型</h2><h3 id="分代模型"><a href="#分代模型" class="headerlink" title="分代模型　　"></a>分代模型　　</h3><img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png" class="" title="G1内存分代模型">
+
+<p>G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：</p>
+<ul>
+<li>由于分区的内存设计，并不要求分代的内存具有物理上的连续性</li>
+<li>RSet 的设计，使得垃圾回收时不用整堆扫描</li>
+<li>年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在<strong>-XX:G1NewSizePercent</strong> ~ <strong>-XX:G1MaxNewSizePercent</strong>　之间动态变化，并且由于<strong>目标暂停时间</strong>(-XX:MaxGCPauseMillis)和实际运行情况下需要扩容的大小和 RSet 实际计算得到</li>
+</ul>
+<p><strong>什么是 TLAB</strong><br>TLAB全称<strong>ThreadLocalAllocBuffer</strong>，是线程的一块私有内存,在线程初始化时，同时也会申请一块指定大小的内存，只给当前线程使用，这样每个线程都单独拥有一个Buffer，如果需要分配内存，就在自己的Buffer上分配，这样就不存在竞争的情况，从而均摊对GC堆（eden区）里共享的分配指针做更新而带来的同步开销，当线程 TLAB 用完，则需要原子操作去 Eden 申请一块新的 TLAB</p>
+<p><strong>什么是 PLAB</strong><br>每次垃圾收集时，GC 线程可以独占一个本地缓冲区(LAB)，用户对象的拷贝和转移，Eden -&gt; Suvivor, Eden/suvivor -&gt; Survivor/Old ，和 TLAB 一样，GC 独占本地缓冲区进行操作，该部分成为 <strong>晋升本地缓冲区(PLAB)</strong></p>
+<h3 id="内存分区模型"><a href="#内存分区模型" class="headerlink" title="内存分区模型"></a>内存分区模型</h3><img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" class="" title="G1内存模型">
+
+<p><strong>分区(Region)</strong> G1将内存分位若干个大小相等的区域(Region)，启动时通过参数 <strong>-XX:G1HeapRegionSize=n</strong> 可指定分区大小（1MB~32MB，且必须是2的幂），默认将整堆划分为2048个分区。<br>每次分配对象逐渐的使用内存，同时每一个Region也不确定分配给某个代服务<br><strong>卡片(Card)</strong> card 是堆内存最小可用粒度，每个分区又被分位若干个大小相等的card(512Byte),每次分配对象将会分配物理上连续的若干个card，所有分区的card被记录在<strong>Global Card Table</strong>中，当查找Region内的对象的引用时，可以通过card引用记录查询(RSet中)，内存的回收也是针对指定Region的card进行处理</p>
+<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%A4%A7%E5%AF%B9%E8%B1%A1%E5%88%86%E9%85%8D.png" class="" title="G1大对象分配">
+
+<p><strong>大对象分配</strong> G1的大对象内存分配由于复制等成本，不在TLAB进行分配，而是直接分配到老年代，同时若G1发现没有引用指向大对象，则直接在年轻代回收中将大对象Region回收掉。大对象占有多个物理上连续的Region，开始的分区被称为　<strong>开始巨型（StartsHumongous）</strong>　，后续Region被成为　<strong>连续巨型（ContinuesHumongous）</strong>　,大对象的分配成本非常高:</p>
+<ul>
+<li>由于需要物理上的连续，因此需要进行整堆扫描</li>
+<li>同时无法享受LAB带来的优化</li>
+</ul>
+<p><strong>Remenberd Set(RSet)</strong> 在传统的串行和并行收集器中，通过STW的方式进行整堆扫描查找对象的引用关系，而G1在每个Region维护了一个RSet,记录分区内对象的被引用关系，当垃圾回收时通过扫描该Region的RSet从而确定是否回收。以下两种情况RSet中并不记录被引用的情况：</p>
+<ul>
+<li>当对象有年轻代过来的引用，不用在RSet中记录，因为年轻代在每次年轻代回收中都会整理</li>
+<li>当引用来自同一个Region不用记录</li>
+</ul>
+<p><strong>RSet中引用的记录方式(Per Region Table)PRT</strong>  如果一个Region被引用特别多，那么该Region的RSet占用空间可能会很大，G1中采用了如下几个粒度进行引用记录:</p>
+<ol>
+<li>粗粒度：只记录引用情况，每一个分区对应一个比特</li>
+<li>细粒度：记录引用对象的分区索引</li>
+<li>稀少：直接记录引用对象的分区card索引</li>
+</ol>
+<p><strong>RSet的维护</strong>  当跨区间更新发生的时候，G1 GC 会将这些对应的堆内存块放入一个缓存，称之为”更新日志缓存”，写入方法与写入队列方式一样，G1 GC 会采用专门的线程组去消费该缓存维护RSet信息，采用 <strong>-XX:G1GoncRefinementThreads</strong> 设置该线程的数量，默认采用 <strong>-XX:ParallelGCThreads选项</strong><br>一旦“更新日志缓存”达到了最大可用，则会被放入全局化的满载队列并启用一个新的缓存块。当更新线程组发现了满载队列入口，则开始处理该队列</p>
+<p><strong>更新日志缓存的实现细节</strong>  <strong>栅栏</strong></p>
+<p><strong>栅栏 Barrier：</strong>　栅栏类似于拦截器，当代码段被执行时，栅栏代码也会被触发执行，栅栏的指令序列成本开销非常昂贵，应用吞吐量也会根据栅栏复杂度降低。G1 采用写前栅栏和写后栅栏维护更新日志<br><strong>写前栅栏：</strong>　　赋值语句执行时，左边的变量会失去上次个对象引用，此时G1记录引用对象的丧失(此时不会立即处理，只是记录了日志)<br><strong>写后栅栏：</strong>　　赋值语句之后，变量拥有了新的引用，此时G1记录引用的增加(缓存块最大可用后，触发SATB)</p>
+<h3 id="并发垃圾收集器存在的问题"><a href="#并发垃圾收集器存在的问题" class="headerlink" title="并发垃圾收集器存在的问题"></a>并发垃圾收集器存在的问题</h3><p>并发垃圾标记阶段主要是为了标记存活对象，如果存活对象标记出错则会出现致命错误。在讨论并发标记问题之前，需要知道标记算法怎么执行的，标记算法使用三色标记算法：</p>
+<p><strong>三色标记算法：</strong>　　</p>
+<ul>
+<li>黑色：节点被标记完成，并且子节点(可达对象)也被遍历标记完成</li>
+<li>灰色：当前正在标记的节点，并且子节点还没有被遍历</li>
+<li>白色：还没有被标记的节点</li>
+</ul>
+<p><strong>对象误标</strong>  在并发标记阶段，GC 线程和应用线程是并发执行的，当一个对象被标记之后，很有可能被应用线程篡改引用关系，当一个黑色对象在并发标记阶段被删除了引用，那么它实际上成为了一个误标的浮动垃圾，该对象只有再下一次GC中处理</p>
+<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%E9%98%B6%E6%AE%B5%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%AF%E6%A0%87.png" class="" title="对象的误标">
+
+<p><strong>对象的漏标</strong>  漏标的现象比误标更严重，当一个存活对象被删除会导致严重后果，在以下情况下时，会存在漏标的现象:</p>
+<ol>
+<li>并发标记时，应用线程给一个黑色对象赋值了白色对象</li>
+<li>并发标记阶段，用用线程删除了所有灰色对象到白色对象的引用</li>
+</ol>
+<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%BC%8F%E6%A0%87.png" class="" title="G1对象的漏标">
+
+<p>如上图所示当对象E被添加了黑色对象A的引用后，因为A是黑色对象，所以会被认为他的所有子节点都已经被扫描过不再扫描。B灰色对象删除了E的引用，那么此时E将不会再被扫描处理，则会产生漏标的现象</p>
+<p><strong>G1 GC 如何处理漏标？</strong>　　</p>
+<p>对以上两种情况，根据 post-write barrier 和 pre-write barrier 栅栏的记录satb mark queue中，和RSet的实现类似，每个应用线程都自带一个satb mark queue，下一轮标记阶段重新扫描这些新增和删除的引用关系则可以解决这个问题</p>
+<p><strong>SATB(snapshot-at-the-beginning)算法</strong><br>Region包含了5个指针，分别是bottom、previous TAMS、next TAMS、top和end</p>
+<img src="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-SATB%E7%AE%97%E6%B3%95%E8%BF%87%E7%A8%8B.png" class="" title="SATB算法">
+
+<p>其中previous TAMS、next TAMS是前后两次发生并发标记时的位置，全称top-at-mark-start</p>
+<ol>
+<li>假设第n轮并发标记开始，将该Region当前的top指针赋值给next TAMS，在并发标记标记期间，分配的对象都在[next TAMS, top]之间，SATB能够确保这部分的对象都会被标记，默认都是存活的</li>
+<li>当并发标记结束时，将next TAMS所在的地址赋值给previous TAMS，SATB给 [bottom, previous TAMS] 之间的对象创建一个快照Bitmap，所有垃圾对象能通过快照被识别出来</li>
+<li>第n+1轮并发标记开始，过程和第n轮一样</li>
+</ol>
+<h3 id="G1-GC-并行循环"><a href="#G1-GC-并行循环" class="headerlink" title="G1 GC 并行循环"></a>G1 GC 并行循环</h3><p><strong>并行循环的触发：</strong></p>
+<p>通过<strong>IHOP</strong>(-XX:InitiatingHeapOccupanyPercent)可以设置一个并行循环的阀值，当老年代占有率打到IHOP的阀值时，并行循环就被初始化了</p>
+<p>一个 G1 并行循环包括以下几个阶段的活动：</p>
+<ul>
+<li><strong>初始标记</strong>(独占式)(收集所有的 GC Root)<br>在此阶段，G1 GC 对根进行标记。该阶段主要利用了常规的年轻代垃圾回收暂停（STW）。</li>
+<li><strong>并行 Root 区间扫描</strong>(扫面和标记所有幸存者区间的对象引用)<br>G1 GC 在初始标记的年轻代存活区扫描对老年代的引用，并标记被引用的对象。该阶段与应用程序（非 STW）同时运行，并且只有完成该阶段后，才能开始下一次 STW 年轻代垃圾回收</li>
+<li><strong>并行标记</strong>(并行标记所有存活对象及对应逻辑地图)<br>G1 GC 在整个堆中查找可访问的（存活的）对象。该阶段与应用程序同时运行，可以被 STW 年轻代垃圾回收中断。</li>
+<li><strong>重标记</strong>(独占式)<br>该阶段是 STW 回收，帮助完成标记周期。G1 GC 清空 SATB 缓冲区，跟踪未被访问的存活对象，并执行引用处理。</li>
+<li><strong>清除</strong><br>在这个最后阶段，G1 GC 执行统计和 RSet 净化的 STW 操作。在统计期间，G1 GC 会识别完全空的区域和可供进行混合垃圾回收的区域。清理阶段在将空白区域重置并添加到空闲列表时为部分并发。注意完全空的region不会被加到CSet，都在这个阶段直接回收了，清洗阶段还包括了对老年代region的打分，衡量其进行垃圾回收的价值</li>
+</ul>
+<h3 id="混合GC"><a href="#混合GC" class="headerlink" title="混合GC"></a>混合GC</h3><p>混合回收就是把<strong>老年代的一些区域</strong>加在将要回收的Eden和survivor的后面，<strong>这些所有将要回收的区域叫做Collection Set（CSet）</strong>，最后用年轻代回收算法一起回收。这里老年代的一些区域是指老年代 Region 中垃圾较多的部分</p>
+<p>当<strong>IHOP</strong>超过阀值，成功触发一次并行循环后成功完成并发标记周期后, g1 gc 从执行年轻代回收切换到执行混合回收。在混合回收中, g1 gc 可选择将一些老年代区域添加到将回收的 Eden 和幸存者区域集。添加的老年区域的确切数量由几个flag控制。g1 gc 回收足够数量的老年代区域 (通过多次混合回收) 后, g1 将恢复到执行年轻代回收, 直到下一个并发标记周期完成</p>
+<p>我们知道年轻代回收是把年轻代活着的对象都拷贝到Survivor的特定区域（Survivor to），剩下的Eden和Survivor from就可以全部回收清理了。那么，mixed GC就是把一部分老年区的region加到Eden和Survivor from的后面，合起来称为collection set, 就是将被回收的集合，下次mixed GC evacuation把他们所有都一并清理。选old region的顺序是垃圾多的（存活对象少）优先，这也是garbage first的来历。这也是利用了G1堆逻辑分区（Region）的灵活性。G1似乎并没有把Survivor分成from和to，但是回收时的道理是一样的，暂且这么理解。<br><strong>混合回收阶段的控制：</strong></p>
+<ul>
+<li>参数控制混合回收阶段最大回收的老年代region的个数</li>
+<li>堆内存空闲内存阀值，当打到阀值则停止初始化混合回收暂停</li>
+<li><strong>-XX:G1MixedGCLiveThresholdPercent</strong>限制最低存活对象阀值，确保混合回收阶段CSet仅包含低于该阀值的老年代Region</li>
+</ul>
+<h3 id="G1-的特点"><a href="#G1-的特点" class="headerlink" title="G1 的特点"></a>G1 的特点</h3><ul>
+<li><strong>并行</strong>，回收期间多个 GC 线程同时工作</li>
+<li><strong>并发</strong>，与工作线程同时进行，减少阻塞</li>
+<li><strong>分代 GC</strong>, G1 依然有 Eden, Survivor, Old, 但是其并不要求物理上连续，且收集期间同时兼顾了年轻代和老年代</li>
+<li><strong>空间整理</strong>，与 CMS 不同，每次都会进行内存整理，避免内存碎片</li>
+<li><strong>可预见性</strong>，由于分区的原因，GC 可以每次只选取部分 Region 进行回收</li>
+</ul>
+<h3 id="相关控制选项"><a href="#相关控制选项" class="headerlink" title="相关控制选项"></a>相关控制选项</h3><p><strong>-XX:PrintGCApplicationStoppedTime</strong><br>输出 GC 造成应用程序暂停的时间</p>
+<p><strong>-XX:PrintGCApplicationConcurrentTime</strong><br>输出应用程序执行时间</p>
+<p><strong>-XX:ConcGCThreads</strong><br>设置与 java 应用程序线程并行执行 GC 的线程数，默认为 GC 独占时运行的线程数的 1/4</p>
+<p><strong>-XX:G1G1HeapRegionSize</strong><br>Region 的大小默认为 Heap 的 1/2000, Region 的大小可以设置 1,2,4,8,16,32MB 的大小，Region 设置越大越有利于大对象的分配，G1 中大对象的分配采用连续可用 Region 并由<strong><em>大对象开始</em></strong>和<strong><em>大对象持续</em></strong>组成,Region 设置偏小则会降低 G1 的灵活性</p>
+<p><strong>-XX:G1HeapWastePercent</strong><br>控制 G1 GC 不会回收的空闲内存比例，默认是堆内存的 5%, G1 GC 在回收过程中会回收所有的空闲 Region ，当达到设置的空闲内存比例为止。</p>
+<p><strong>-XX:G1MixedGCCountTarget</strong><br>该选项设置老年代并行循环之后设置多少个混合 GC, 默认值为8，设置较大的值可以让老年代 Region 回收多花一些时间，当值过大也会使老年代并行循环等待混合 GC 的时间过长.</p>
+<p><strong>-XX:+G1PrintRegionLivenessInfo</strong><br>开启该选项之前需要开启：-XX:+UnlockDiagnosticVMOptions,开启后打印每个 Region 里面对象存活信息，包括：<strong>使用率</strong>, <strong>RSet大小</strong>, <strong>回收该 Region 的价值评估</strong></p>
+<p><strong>-XX:G1ReservePercent</strong><br>为了确保对象升级到下一个阶段内存空间足够，会设置预留空间，默认堆空间的10%, 该预留空间不能用于<strong>年轻代</strong></p>
+<p><strong>-XX:G1SummarizeRSetStats</strong><br>阶段性打印 RSet 的详细信息</p>
+<p><strong>-XX:GCTimeRatio</strong><br>设置应用线程话费时间与GC线程花费时间的比率</p>
+<p><strong>-XX:+HeapDumpBeforeFullGC/-XX:+HeapDumpAfterFullGC</strong><br>创建 hprof 文件，可以通过对比 Full GC 前后 java 堆内存对比，找出内存泄露等其他问题</p>
+<p><strong>-XX:IntiatingHeapOccypancyPercent</strong><br>设置并行循环初始堆大小，每一次 GC 完成后会对比老年代占用空间和整个堆大小的比例，如果满足条件则进行一次并行循环垃圾回收，默认值 45</p>
+<p><strong>-XX:+G1UseAdaptiveIHop</strong><br>JDK9 动态调节标记阶段开始时间，尽可能迟的触发标记循环，以避免消耗老年代空间，提升应用吞吐量</p>
+<p><strong>-XX:+MaxGCPauseMills</strong><br>设置G1的目标停顿时间，确保年轻带的回收时间控制在目标时间以内</p>
+<p><strong>-XX:MinHeapFreeRatio -XX:MaxHeapFreeRatio</strong><br>设置堆内存的最小空闲大小比例，默认最小是40%，最大值70%，当堆内存大小小于该值，则判断-Xms 和 -Xmx 来确定是否扩展堆内存或者减小堆内存</p>
+<p><strong>-XX:+PrintAdaptiveSizePolicy</strong><br>打印堆内存大小变化的相应信息</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" data-id="ck4v9zr5900009es6cte527ae" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Albert"
+        },
+        "headline": "G1垃圾收集器",
+        "image": "https://albertnie.github.io/blogs/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png",
+        "keywords": "JVM, java, 垃圾收集器",
+        "genre": "JVM",
+        "datePublished": "2020-01-01",
+        "dateCreated": "2020-01-01",
+        "dateModified": "2020-01-01",
+        "url": "https://albertnie.github.io/blogs/2020/01/01/G1垃圾收集器/",
+        "description": "G1 内存模型分代模型　　
+
+G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：
+
+由于分区的内存设计，并不要求分代的内存具有物理上的连续性
+RSet 的设计，使得垃圾回收时不用整堆扫描
+年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz",
+        "wordCount": 277
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/blogs/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/blogs/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="stack-overflow" href="/blogs/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/AlbertNie" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/blogs/https:/weibo.com/u/2334665271" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/blogs/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">垃圾收集器总结</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="title">G1垃圾收集器</a></p>
+                            <p class="item-date"><time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg)" alt="垃圾收集器总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="title">垃圾收集器总结</a></p>
+                            <p class="item-date"><time datetime="2020-01-01T11:43:26.000Z" itemprop="datePublished">2020-01-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/JVM/">JVM</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/blogs/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Albert</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/blogs/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/blogs/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/blogs/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/blogs/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

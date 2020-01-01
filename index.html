@@ -84,7 +84,7 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/blogs/">Inici</a>
+                                    <a class="main-nav-list-link" href="/blogs/">Home</a>
                                 </li>
                             
                         </ul>
@@ -92,7 +92,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -113,8 +113,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/blogs/',
@@ -142,7 +142,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">Inici</em>
+    <em class="page-title-link" data-url="home">Home</em>
     </h1>
 </div>
 
@@ -162,6 +162,58 @@
     
     
         <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">0</span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/blogs/categories/JVM/">JVM</a>
+            </div>
+            <div class="date"><time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">G1垃圾收集器</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            G1 内存模型分代模型　　
+
+G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：
+
+由于分区的内存设计，并不要求分代的内存具有物理上的连续性
+RSet 的设计，使得垃圾回收时不用整堆扫描
+年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -223,7 +275,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -292,6 +344,26 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png)" alt="G1垃圾收集器" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blogs/categories/JVM/">JVM</a></p>
+                            <p class="item-title"><a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" class="title">G1垃圾收集器</a></p>
+                            <p class="item-date"><time datetime="2020-01-01T12:22:00.000Z" itemprop="datePublished">2020-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
     
     
@@ -318,7 +390,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/JVM/">JVM</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/JVM/">JVM</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -326,9 +398,9 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -336,9 +408,9 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">etiquetes</h3>
+        <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -346,9 +418,9 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">etiqueta cloud</h3>
+        <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a>
+            <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a>
         </div>
     </div>
 

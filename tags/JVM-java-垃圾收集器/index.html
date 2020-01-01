@@ -6,14 +6,14 @@
     
 
     
-    <title>Archive: 2020/1 | Albert</title>
+    <title>Tag: JVM, java, 垃圾收集器 | Albert</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="day day up">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Albert">
-<meta property="og:url" content="https://albertnie.github.io/blogs/archives/2020/01/index.html">
+<meta property="og:url" content="https://albertnie.github.io/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/index.html">
 <meta property="og:site_name" content="Albert">
 <meta property="og:description" content="day day up">
 <meta property="og:locale" content="zh">
@@ -142,7 +142,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive: 2020/1
+    <i class="icon fa fa-tag"></i>Tag: <em>JVM, java, 垃圾收集器</em>
     </h1>
 </div>
 
@@ -206,58 +206,6 @@ G1 内存同样采用分代模型，分为年轻代和老年代，但具有其�
 由于分区的内存设计，并不要求分代的内存具有物理上的连续性
 RSet 的设计，使得垃圾回收时不用整堆扫描
 年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg)" alt="垃圾收集器总结" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/blogs/categories/JVM/">JVM</a>
-            </div>
-            <div class="date"><time datetime="2020-01-01T11:43:26.000Z" itemprop="datePublished">2020-01-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/">垃圾收集器总结</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            各垃圾收集器对比
-
-Serial 串行收集器　　串行收集器组合 Serial + Serial Old
-
-
-开启选项：-XX:+SerialGC串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。适用于内存小，单核场景，一般 Client 使用关键词:　年轻代复制算法，串行回收，STW
-并行收集器并行收集器组合 Parallel Sc
         </p>
     </div>
 </article>

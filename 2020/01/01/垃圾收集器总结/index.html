@@ -10,7 +10,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="JVM" />
+    <meta name="keywords" content="JVM,java,垃圾收集器" />
     
     <meta name="description" content="各垃圾收集器对比  Serial 串行收集器　　串行收集器组合 Serial + Serial Old   开启选项：-XX:+SerialGC串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。适用于内存小，单核场景，一般 Client 使用关键词:　年轻代复制算法，串行回收，STW 并行收集器并行收集器组合 Parallel Sc">
 <meta property="og:type" content="article">
@@ -21,15 +21,15 @@
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
 <meta property="article:published_time" content="2020-01-01T11:43:26.000Z">
-<meta property="article:modified_time" content="2020-01-01T12:14:07.651Z">
+<meta property="article:modified_time" content="2020-01-01T13:16:10.359Z">
 <meta property="article:author" content="Albert">
 <meta property="article:tag" content="JVM">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="垃圾收集器">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
     
 
-    
-        <link rel="alternate" href="/" title="Albert" type="application/atom+xml" />
     
 
     
@@ -86,7 +86,7 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/blogs/">Home</a>
+                                    <a class="main-nav-list-link" href="/blogs/">Inici</a>
                                 </li>
                             
                         </ul>
@@ -94,7 +94,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -115,8 +115,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/blogs/',
@@ -178,13 +178,14 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blogs/tags/JVM/" rel="tag">JVM</a>
+        <a class="tag-link" href="/blogs/tags/JVM/" rel="tag">JVM</a>, <a class="tag-link" href="/blogs/tags/java/" rel="tag">java</a>, <a class="tag-link" href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a>
     </div>
 
                 
 
                 
 
+                阅读数量:<span id="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="垃圾收集器总结"></span>次
             </div>
         
         
@@ -218,68 +219,59 @@
         </div>
         <footer class="article-footer">
             
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="//www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
 
 
 
-    <a data-url="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" data-id="ck4vaazpk0005bxs60rwk4fua" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
 
         </footer>
     </div>
@@ -293,7 +285,7 @@
         },
         "headline": "垃圾收集器总结",
         "image": "https://albertnie.github.io/blogs/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg",
-        "keywords": "JVM",
+        "keywords": "JVM java 垃圾收集器",
         "genre": "JVM",
         "datePublished": "2020-01-01",
         "dateCreated": "2020-01-01",
@@ -330,29 +322,13 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>follow:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
                 <li>
                     <a class="social-tooltip" title="twitter" href="/blogs/" target="_blank" rel="noopener">
                         <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/blogs/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="stack-overflow" href="/blogs/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-stack-overflow"></i>
                     </a>
                 </li>
                 
@@ -367,16 +343,8 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
                 <li>
-                    <a class="social-tooltip" title="weibo" href="/blogs/https:/weibo.com/u/2334665271" target="_blank" rel="noopener">
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/u/2334665271" target="_blank" rel="noopener">
                         <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/blogs/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-rss"></i>
                     </a>
                 </li>
                 
@@ -388,7 +356,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
 <nav id="article-nav">
     
         <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             G1垃圾收集器
@@ -510,7 +478,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li></ul>
         </div>
@@ -520,9 +488,9 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
+        <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/HBase-%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">-HBase -数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/spring-%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">-spring -国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/spring/" rel="tag">spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -530,9 +498,9 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
+        <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
-            <a href="/blogs/tags/HBase-%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">-HBase -数据库</a> <a href="/blogs/tags/spring-%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">-spring -国际化</a> <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a>
+            <a href="/blogs/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a> <a href="/blogs/tags/java/" style="font-size: 10px;">java</a> <a href="/blogs/tags/spring/" style="font-size: 10px;">spring</a> <a href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">国际化</a> <a href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
         </div>
     </div>
 
@@ -583,6 +551,46 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
         </div>
     </div>
 </footer>
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script>
+    var APP_ID = '45nFxXuWPAWhlJfzpd2rXM6r-gzGzoHsz';
+    var APP_KEY = '2wgQ7IdxbbCUcJCRoVTxihAo';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    // 显示次数
+    function showTime(Counter) {
+        var query = new AV.Query("Counter");
+        if($(".leancloud_visitors").length > 0){
+            var url = $(".leancloud_visitors").attr('id').trim();
+            // where field
+            query.equalTo("words", url);
+            // count
+            query.count().then(function (number) {
+                // There are number instances of MyClass where words equals url.
+                $(document.getElementById(url)).text(number?  number : '--');
+            }, function (error) {
+                // error is an instance of AVError.
+            });
+        }
+    }
+    // 追加pv
+    function addCount(Counter) {
+        var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'icafebolger.com';
+        var Counter = AV.Object.extend("Counter");
+        var query = new Counter;
+        query.save({
+            words: url
+        }).then(function (object) {
+        })
+    }
+    $(function () {
+        var Counter = AV.Object.extend("Counter");
+        addCount(Counter);
+        showTime(Counter);
+    });
+</script>
 
         
     

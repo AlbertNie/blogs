@@ -15,17 +15,17 @@
     <meta name="description" content="G1 内存模型分代模型　　  G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：  由于分区的内存设计，并不要求分代的内存具有物理上的连续性 RSet 的设计，使得垃圾回收时不用整堆扫描 年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="G1垃圾收集器">
-<meta property="og:url" content="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/index.html">
+<meta property="og:url" content="http://www.nieyu.net/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/index.html">
 <meta property="og:site_name" content="Albert">
 <meta property="og:description" content="G1 内存模型分代模型　　  G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：  由于分区的内存设计，并不要求分代的内存具有物理上的连续性 RSet 的设计，使得垃圾回收时不用整堆扫描 年轻代的空间不一定固定，当使用 -XX:NewRatio,-Xmn时候年轻代才固定大小，当使用该参数时，年轻代首先会在-XX:G1NewSizePercent ~ -XX:G1MaxNewSiz">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://www.nieyu.net/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
 <meta property="article:published_time" content="2020-01-01T12:22:00.000Z">
 <meta property="article:modified_time" content="2020-01-01T12:27:14.541Z">
 <meta property="article:author" content="Albert">
 <meta property="article:tag" content="JVM, java, 垃圾收集器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
+<meta name="twitter:image" content="http://www.nieyu.net/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png">
     
 
     
@@ -84,7 +84,7 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/blogs/">Főoldal</a>
+                                    <a class="main-nav-list-link" href="/blogs/">Inici</a>
                                 </li>
                             
                         </ul>
@@ -92,14 +92,14 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Keresés" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Keresendő szöveg..." />
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -111,11 +111,11 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Bejegyzések',
-            PAGES: 'Oldalak',
-            CATEGORIES: 'Kategóriák',
-            TAGS: 'Címkék',
-            UNTITLED: '(Névtelen)',
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/blogs/',
         CONTENT_URL: '/blogs/content.json',
@@ -361,13 +361,13 @@
             "name": "Albert"
         },
         "headline": "G1垃圾收集器",
-        "image": "https://albertnie.github.io/blogs/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png",
+        "image": "http://www.nieyu.net/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/G1-G1%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3%E6%A8%A1%E5%9E%8B.png",
         "keywords": "JVM, java, 垃圾收集器",
         "genre": "JVM",
         "datePublished": "2020-01-01",
         "dateCreated": "2020-01-01",
         "dateModified": "2020-01-01",
-        "url": "https://albertnie.github.io/blogs/2020/01/01/G1垃圾收集器/",
+        "url": "http://www.nieyu.net/2020/01/01/G1垃圾收集器/",
         "description": "G1 内存模型分代模型　　
 
 G1 内存同样采用分代模型，分为年轻代和老年代，但具有其独立的特性：
@@ -399,7 +399,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>követés:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -433,7 +433,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
 <nav id="article-nav">
     
         <a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">következő</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             spring国际化
@@ -444,7 +444,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     
     
         <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">előző</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">垃圾收集器总结</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -460,7 +460,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
     <div class="widget-wrap">
-        <h3 class="widget-title">friss</h3>
+        <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
                 
@@ -551,7 +551,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">kategórák</h3>
+        <h3 class="widget-title">categories</h3>
         <div class="widget">
             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/HBase/">HBase</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blogs/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
@@ -561,7 +561,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archívum</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2020/01/">January 2020</a><span class="archive-list-count">4</span></li></ul>
         </div>
@@ -571,7 +571,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">címkék</h3>
+        <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
             <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">JVM, java, 垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/spring/" rel="tag">spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li></ul>
         </div>
@@ -581,7 +581,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">címkefelhő</h3>
+        <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
             <a href="/blogs/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/blogs/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/blogs/tags/JVM-java-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">JVM, java, 垃圾收集器</a> <a href="/blogs/tags/java/" style="font-size: 10px;">java</a> <a href="/blogs/tags/spring/" style="font-size: 10px;">spring</a> <a href="/blogs/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 10px;">国际化</a> <a href="/blogs/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
         </div>
@@ -591,7 +591,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">linkek</h3>
+        <h3 class="widget-title">links</h3>
         <div class="widget">
             <ul>
                 
@@ -681,7 +681,7 @@ RSet 的设计，使得垃圾回收时不用整堆扫描
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://albertnie.github.io/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/';
+    var disqus_url = 'http://www.nieyu.net/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/';
     
     (function() {
     var dsq = document.createElement('script');

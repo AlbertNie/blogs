@@ -6,26 +6,26 @@
     
 
     
-    <title>垃圾收集器总结 | Albert</title>
+    <title>spring国际化 | Albert</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="JVM" />
+    <meta name="keywords" content="-spring -国际化" />
     
-    <meta name="description" content="各垃圾收集器对比  Serial 串行收集器　　串行收集器组合 Serial + Serial Old   开启选项：-XX:+SerialGC串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。适用于内存小，单核场景，一般 Client 使用关键词:　年轻代复制算法，串行回收，STW 并行收集器并行收集器组合 Parallel Sc">
+    <meta name="description" content="1. spring 国际化 MessageSource定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。    实现类 作用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="垃圾收集器总结">
-<meta property="og:url" content="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="spring国际化">
+<meta property="og:url" content="https://albertnie.github.io/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/index.html">
 <meta property="og:site_name" content="Albert">
-<meta property="og:description" content="各垃圾收集器对比  Serial 串行收集器　　串行收集器组合 Serial + Serial Old   开启选项：-XX:+SerialGC串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。适用于内存小，单核场景，一般 Client 使用关键词:　年轻代复制算法，串行回收，STW 并行收集器并行收集器组合 Parallel Sc">
+<meta property="og:description" content="1. spring 国际化 MessageSource定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。    实现类 作用">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
-<meta property="article:published_time" content="2020-01-01T11:43:26.000Z">
-<meta property="article:modified_time" content="2020-01-01T12:14:07.651Z">
+<meta property="og:image" content="https://albertnie.github.io/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png">
+<meta property="article:published_time" content="2020-01-01T12:31:01.000Z">
+<meta property="article:modified_time" content="2020-01-01T12:34:34.828Z">
 <meta property="article:author" content="Albert">
-<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="-spring -国际化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg">
+<meta name="twitter:image" content="https://albertnie.github.io/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png">
     
 
     
@@ -144,19 +144,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/blogs/categories/JVM/">JVM</a>
+    <a class="page-title-link" href="/blogs/categories/spring/">spring</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-垃圾收集器总结" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-spring国际化" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        垃圾收集器总结
+        spring国际化
         </h1>
     
 
@@ -167,8 +167,8 @@
                 
     <div class="article-date">
       <i class="fa fa-calendar"></i>
-      <a href="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" class="article-date">
-         <time datetime="2020-01-01T11:43:26.000Z" itemprop="datePublished">2020-01-01</time>
+      <a href="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="article-date">
+         <time datetime="2020-01-01T12:31:01.000Z" itemprop="datePublished">2020-01-01</time>
       </a>
     </div>
 
@@ -178,7 +178,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blogs/tags/JVM/" rel="tag">JVM</a>
+        <a class="tag-link" href="/blogs/tags/spring-%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">-spring -国际化</a>
     </div>
 
                 
@@ -189,31 +189,47 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="各垃圾收集器对比"><a href="#各垃圾收集器对比" class="headerlink" title="各垃圾收集器对比"></a>各垃圾收集器对比</h2><img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg" class="" title="各垃圾收集器对比">
-
-<h3 id="Serial-串行收集器"><a href="#Serial-串行收集器" class="headerlink" title="Serial 串行收集器　　"></a>Serial 串行收集器　　</h3><p>串行收集器组合 <strong>Serial + Serial Old</strong></p>
-<img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93-%E4%B8%B2%E8%A1%8C%E6%94%B6%E9%9B%86%E5%99%A8.png" class="" title="串行收集器">
-
-<p><strong>开启选项</strong>：-XX:+SerialGC<br>串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。<br><strong>适用于内存小，单核场景</strong>，一般 Client 使用<br><strong>关键词</strong>:　年轻代复制算法，串行回收，STW</p>
-<h3 id="并行收集器"><a href="#并行收集器" class="headerlink" title="并行收集器"></a>并行收集器</h3><p>并行收集器组合 <strong>Parallel Scavenge + Parallel Old</strong></p>
-<img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20191224131338.png" class="" title="并行收集器">
-
-<p><strong>开启选项</strong>：-XX:+UseParallelGC 或 -XX:+UseParallelOldGC（可互相激活）<br>并行收集器拥有高吞吐量，在 STW 期间采用并行收集，年轻带采用复制算法，老年代标记-整理<br>通过参数：-XX:MaxGCPauseMills 和 -XX:GCTimeRatio 可调节<br><strong>适用于吞吐量高于延迟的场景</strong></p>
-<h3 id="并发标记清除收集器"><a href="#并发标记清除收集器" class="headerlink" title="并发标记清除收集器"></a>并发标记清除收集器</h3><p>并发标记清除收集器组合 <strong>ParNew + CMS + Serial Old</strong></p>
-<img src="/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%94%B6%E9%9B%86%E5%99%A8.png" class="" title="并发标记清除收集器">
-
-<p><strong>开启选项</strong>：-XX:+UseConcMarkSweepGC<br>CMS更加关注延迟，年轻代采用 STW 方式并行收集，老年代采用 CMS 垃圾回收，其过程为：<strong>初始标记，并发标记，重新标记，并发清除</strong>。Remark 阶段主要是再次标记那些应用线程修改而错过的可达对象<br><strong>适用于堆内存大，CPU核数量多</strong><br>CMS <strong>缺点</strong>：</p>
+            <h2 id="1-spring-国际化-MessageSource"><a href="#1-spring-国际化-MessageSource" class="headerlink" title="1. spring 国际化 MessageSource"></a>1. spring 国际化 MessageSource</h2><p>定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。</p>
+<table>
+<thead>
+<tr>
+<th>实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ReloadableResourceBundleMessageSource</td>
+<td>带有缓存和过期时间的，可重新加载的 MessageSource实现类</td>
+</tr>
+<tr>
+<td>ResourceBundleMessageSource</td>
+<td>缓存的，以BundleMessage实现的MessageSource</td>
+</tr>
+</tbody></table>
+<h2 id="2-ReloadableResourceBundleMessageSource"><a href="#2-ReloadableResourceBundleMessageSource" class="headerlink" title="2. ReloadableResourceBundleMessageSource"></a>2. ReloadableResourceBundleMessageSource</h2><p><strong>类结构</strong></p>
 <ul>
-<li>并发阶段和应用线程同时增加堆内存占用和 CPU,</li>
-<li>必须要在老年代用完之前完成回收，否则触发保护，会进行 STW 的垃圾收集</li>
-<li>标记清除产生内存碎片，需要使用参数-XX:<strong>CMSFullGCsBeForeCompaction</strong>　指定多少次（默认为0）收集后进行压缩的 Full GC</li>
-<li>CMS 在内存碎片的情况下无法使用<strong>指针碰撞技术</strong>为新对象分配内存，只能使用<strong>空闲列表</strong>执行内存分配</li>
-<li>无法处理在并发标记阶段产生的新垃圾，只有在下次垃圾回收时处理</li>
+<li>HierarchicalMessageSource 该接口描述了带有层次结构的 MessageSource</li>
+<li>ResourceLoaderAware 该接口描述了实现类能够被注入 ResourceLoader</li>
+<li>AbstractMessageSource 主要实现了层次结构，CommonMessage, 和 getMessage 方法，在其实现的 getMessage 方法中主要实现了一些参数填充，决策是否采用 default 的逻辑等，而抽象了通过 code 和 locale 获取 MessageFormat 的方法，由其子类实现。</li>
+<li>AbstractResourceBasedMessageSource 定义缓存和加载资源名字等。</li>
 </ul>
-<p><strong>指针碰撞技术：</strong>假设内存规整，则堆内存分配在类加载完成后能够确定需要分配内存的大小，此时只需要移动指针需要分配的大小即可<br><strong>空闲列表：</strong>虚拟机维护一个列表，记录可用内存块，分配给对象一块足够大的内存</p>
-<h3 id="G1-Garbage-First"><a href="#G1-Garbage-First" class="headerlink" title="G1 (Garbage First)"></a>G1 (Garbage First)</h3>
+<p><strong>类结构图</strong></p>
+<img src="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png" class="" title="ReloadableResourceBundleMessageSource">
 
-<p><strong>开启选项：</strong>-XX:+UseG1GC<br>G1　垃圾收集器以低延迟为目标，主要包含动作：<strong>初始标记、并发标记、重新标记、清除、转移回收</strong>，G1 并不会等内存耗尽或者快耗尽的时候进行垃圾回收，而是采用<strong>启发式算法</strong>，在老年代找出最具有回收价值的 Region 进行垃圾回收。同时具有根据用户设置暂停时间进行自动调节年轻代大小的能力。时间越短年轻代越小。G1 的垃圾收集都是 STW 的，在收集的时候可能只收集年轻代，也可能是一个混合收集(包含部分老年代)</p>
+<p>ReloadableResourceBundleMessageSource 通过内部类 PropertiesHolder 缓存数据，同时支持线程安全加载资源，其线程安全的加载资源实现形式是通过 ConcurrentHashMap 结合PropertiesHolder内部的 ReentrantLock 来实现的。具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> PropertiesHolder <span class="title">getProperties</span><span class="params">(String filename)</span> </span>&#123;</span><br><span class="line">		PropertiesHolder propHolder = <span class="keyword">this</span>.cachedProperties.get(filename);</span><br><span class="line">		<span class="keyword">long</span> originalTimestamp = -<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (propHolder != <span class="keyword">null</span>) &#123;</span><br><span class="line">			originalTimestamp = propHolder.getRefreshTimestamp();</span><br><span class="line">			<span class="keyword">if</span> (originalTimestamp == -<span class="number">1</span> || originalTimestamp &gt; System.currentTimeMillis() - getCacheMillis()) &#123;</span><br><span class="line">				<span class="comment">// Up to date</span></span><br><span class="line">				<span class="keyword">return</span> propHolder;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			propHolder = <span class="keyword">new</span> PropertiesHolder();</span><br><span class="line">			PropertiesHolder existingHolder = <span class="keyword">this</span>.cachedProperties.putIfAbsent(filename, propHolder);</span><br><span class="line">			<span class="keyword">if</span> (existingHolder != <span class="keyword">null</span>) &#123;</span><br><span class="line">				propHolder = existingHolder;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// At this point, we need to refresh...</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.concurrentRefresh &amp;&amp; propHolder.getRefreshTimestamp() &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="comment">// A populated but stale holder -&gt; could keep using it.</span></span><br><span class="line">			<span class="keyword">if</span> (!propHolder.refreshLock.tryLock()) &#123;</span><br><span class="line">				<span class="comment">// Getting refreshed by another thread already -&gt;</span></span><br><span class="line">				<span class="comment">// let's return the existing properties for the time being.</span></span><br><span class="line">				<span class="keyword">return</span> propHolder;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			propHolder.refreshLock.lock();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			PropertiesHolder existingHolder = <span class="keyword">this</span>.cachedProperties.get(filename);</span><br><span class="line">			<span class="keyword">if</span> (existingHolder != <span class="keyword">null</span> &amp;&amp; existingHolder.getRefreshTimestamp() &gt; originalTimestamp) &#123;</span><br><span class="line">				<span class="keyword">return</span> existingHolder;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> refreshProperties(filename, propHolder);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">finally</span> &#123;</span><br><span class="line">			propHolder.refreshLock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过刷新的时间戳 refreshTimestamp 判断是否已经过了 cache 的时间，从而进行更新</li>
+<li>concurrentRefresh 字段用于配置是否允许并发刷新，如果允许并发刷新，那么在<strong>需要刷新</strong>并且<strong>不是全新的没有注入数据的 Holder</strong> 的时候没有获取成功锁, 证明别的线程在刷新，当前线程直接返回，不再去刷新数据；如果不允许并发刷新，那么就根据获取锁的顺序依次刷新数据。</li>
+<li>这里在并发刷新的时候，如果是全新的 Holder 那么线程会获取锁并刷新数据后再返回</li>
+<li>通过以上两点来保证线程安全和数据安全</li>
+<li>在获取到锁之后还会再次从 map 中获取最新的 Holder 并对比刷新时间，如果刷新时间大于之前获取的 Holder 的刷新时间，那么证明该 Holder 是别的线程刷新完成并放入的最新的 Holder，此时便没有必要再次刷新了，直接返回。这里为什么说对比刷新时间就能得知是否是已经刷新过的，并且是数据完全的不会 NPE 的呢，是因为 Holder 里面的 refreshTime 是 volatile 的，并且是在数据处理并加载到 map 完成后最后一步才更新的 refreshTime，因此可以保证线程之间的可见性。</li>
+<li>ReloadableResourceBundleMessageSource 中 properties 文件的读取和国际化都是类内部自己实现的，包括了计算文件名等。</li>
+</ul>
+<h2 id="3-ResourceBundleMessageSource"><a href="#3-ResourceBundleMessageSource" class="headerlink" title="3. ResourceBundleMessageSource"></a>3. ResourceBundleMessageSource</h2><p><strong>类结构图</strong></p>
+<img src="/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-bf6cf60c.png" class="" title="ResourceBundleMessageSource">
+
+<p>从类结构图可以看出其也是带有层次结构的 MessageSource，但不是从 ResourceLoader 加载资源了。另外，该类的国际化资源加载使用的是 java 的 ResourceBundle 来实现。并且不支持缓存失效重新加载。所以在该类进行设置缓存时间无效。</p>
 
         </div>
         <footer class="article-footer">
@@ -221,7 +237,7 @@
 
 
 
-    <a data-url="https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/" data-id="ck4vaazpk0005bxs60rwk4fua" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://albertnie.github.io/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" data-id="ck4vaazpd0001bxs6d3zd8tmc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -291,22 +307,23 @@
             "@type": "Person",
             "name": "Albert"
         },
-        "headline": "垃圾收集器总结",
-        "image": "https://albertnie.github.io/blogs/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/G1-linkedkeeper0_ec518558-1c4a-4d6c-b16d-9fd7444b59ec.jpg",
-        "keywords": "JVM",
-        "genre": "JVM",
+        "headline": "spring国际化",
+        "image": "https://albertnie.github.io/blogs/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png",
+        "keywords": "-spring -国际化",
+        "genre": "spring",
         "datePublished": "2020-01-01",
         "dateCreated": "2020-01-01",
         "dateModified": "2020-01-01",
-        "url": "https://albertnie.github.io/blogs/2020/01/01/垃圾收集器总结/",
-        "description": "各垃圾收集器对比
-
-Serial 串行收集器　　串行收集器组合 Serial + Serial Old
+        "url": "https://albertnie.github.io/blogs/2020/01/01/spring国际化/",
+        "description": "1. spring 国际化 MessageSource定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。
 
 
-开启选项：-XX:+SerialGC串行收集器当所有线程进入 safe point 后进行　STW(stop the word)　垃圾收集，且是单线程。适用于内存小，单核场景，一般 Client 使用关键词:　年轻代复制算法，串行回收，STW
-并行收集器并行收集器组合 Parallel Sc",
-        "wordCount": 86
+
+实现类
+作用
+
+",
+        "wordCount": 330
     }
 </script>
 
@@ -387,16 +404,22 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
         
 <nav id="article-nav">
     
-        <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/blogs/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            G1垃圾收集器
+            HBase数据结构及特性
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
+    
+        <a href="/blogs/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">G1垃圾收集器</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -590,7 +613,7 @@ Serial 串行收集器　　串行收集器组合 Serial + Serial Old
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://albertnie.github.io/blogs/2020/01/01/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E6%80%BB%E7%BB%93/';
+    var disqus_url = 'https://albertnie.github.io/blogs/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/';
     
     (function() {
     var dsq = document.createElement('script');

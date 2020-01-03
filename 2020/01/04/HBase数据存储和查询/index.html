@@ -6,27 +6,27 @@
     
 
     
-    <title>spring国际化 | Albert</title>
+    <title>HBase数据存储和查询 | Albert</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="spring,国际化" />
+    <meta name="keywords" content="HBase,数据库" />
     
-    <meta name="description" content="1. spring 国际化 MessageSource定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。    实现类 作用">
+    <meta name="description" content="存储结构  存储上是一个标准的 LSM 树，分为内存部分和磁盘部分，内存部分为跳跃表(ConcurrentSkipListMap),磁盘部分为一个DiskStore,内部为多个DiskFile,都是有序的结构。当客户端不停的写，则直接写入 MemStore, 当内存 MemStore 超过一定的阀值，会触发一次 Flush 操作，将 MemStore 写成一个磁盘文件。当磁盘文件较多时，会进行一次">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring国际化">
-<meta property="og:url" content="http://www.nieyu.net/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/index.html">
+<meta property="og:title" content="HBase数据存储和查询">
+<meta property="og:url" content="http://www.nieyu.net/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Albert">
-<meta property="og:description" content="1. spring 国际化 MessageSource定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。    实现类 作用">
+<meta property="og:description" content="存储结构  存储上是一个标准的 LSM 树，分为内存部分和磁盘部分，内存部分为跳跃表(ConcurrentSkipListMap),磁盘部分为一个DiskStore,内部为多个DiskFile,都是有序的结构。当客户端不停的写，则直接写入 MemStore, 当内存 MemStore 超过一定的阀值，会触发一次 Flush 操作，将 MemStore 写成一个磁盘文件。当磁盘文件较多时，会进行一次">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://www.nieyu.net/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png">
-<meta property="article:published_time" content="2020-01-01T12:31:01.000Z">
-<meta property="article:modified_time" content="2020-01-01T13:16:16.452Z">
+<meta property="og:image" content="http://www.nieyu.net/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-9c514bcb.png">
+<meta property="article:published_time" content="2020-01-03T16:31:47.000Z">
+<meta property="article:modified_time" content="2020-01-03T16:35:31.461Z">
 <meta property="article:author" content="Albert">
-<meta property="article:tag" content="spring">
-<meta property="article:tag" content="国际化">
+<meta property="article:tag" content="HBase">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.nieyu.net/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png">
+<meta name="twitter:image" content="http://www.nieyu.net/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-9c514bcb.png">
     
 
     
@@ -143,19 +143,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/spring/">spring</a>
+    <a class="page-title-link" href="/categories/HBase/">HBase</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-spring国际化" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-HBase数据存储和查询" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        spring国际化
+        HBase数据存储和查询
         </h1>
     
 
@@ -166,8 +166,8 @@
                 
     <div class="article-date">
       <i class="fa fa-calendar"></i>
-      <a href="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="article-date">
-         <time datetime="2020-01-01T12:31:01.000Z" itemprop="datePublished">2020-01-01</time>
+      <a href="/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/" class="article-date">
+         <time datetime="2020-01-03T16:31:47.000Z" itemprop="datePublished">2020-01-04</time>
       </a>
     </div>
 
@@ -177,59 +177,61 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/spring/" rel="tag">spring</a>, <a class="tag-link" href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag">国际化</a>
+        <a class="tag-link" href="/tags/HBase/" rel="tag">HBase</a>, <a class="tag-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a>
     </div>
 
                 
 
                 
 
-                阅读数量:<span id="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/" class="leancloud_visitors" data-flag-title="spring国际化"></span>次
+                阅读数量:<span id="/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/" class="leancloud_visitors" data-flag-title="HBase数据存储和查询"></span>次
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="1-spring-国际化-MessageSource"><a href="#1-spring-国际化-MessageSource" class="headerlink" title="1. spring 国际化 MessageSource"></a>1. spring 国际化 MessageSource</h2><p>定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。</p>
-<table>
-<thead>
-<tr>
-<th>实现类</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ReloadableResourceBundleMessageSource</td>
-<td>带有缓存和过期时间的，可重新加载的 MessageSource实现类</td>
-</tr>
-<tr>
-<td>ResourceBundleMessageSource</td>
-<td>缓存的，以BundleMessage实现的MessageSource</td>
-</tr>
-</tbody></table>
-<h2 id="2-ReloadableResourceBundleMessageSource"><a href="#2-ReloadableResourceBundleMessageSource" class="headerlink" title="2. ReloadableResourceBundleMessageSource"></a>2. ReloadableResourceBundleMessageSource</h2><p><strong>类结构</strong></p>
-<ul>
-<li>HierarchicalMessageSource 该接口描述了带有层次结构的 MessageSource</li>
-<li>ResourceLoaderAware 该接口描述了实现类能够被注入 ResourceLoader</li>
-<li>AbstractMessageSource 主要实现了层次结构，CommonMessage, 和 getMessage 方法，在其实现的 getMessage 方法中主要实现了一些参数填充，决策是否采用 default 的逻辑等，而抽象了通过 code 和 locale 获取 MessageFormat 的方法，由其子类实现。</li>
-<li>AbstractResourceBasedMessageSource 定义缓存和加载资源名字等。</li>
-</ul>
-<p><strong>类结构图</strong></p>
-<img src="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png" class="" title="ReloadableResourceBundleMessageSource">
+            <h2 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h2><img src="/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-9c514bcb.png" class="" title="HBase数据存储结构">
 
-<p>ReloadableResourceBundleMessageSource 通过内部类 PropertiesHolder 缓存数据，同时支持线程安全加载资源，其线程安全的加载资源实现形式是通过 ConcurrentHashMap 结合PropertiesHolder内部的 ReentrantLock 来实现的。具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> PropertiesHolder <span class="title">getProperties</span><span class="params">(String filename)</span> </span>&#123;</span><br><span class="line">		PropertiesHolder propHolder = <span class="keyword">this</span>.cachedProperties.get(filename);</span><br><span class="line">		<span class="keyword">long</span> originalTimestamp = -<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (propHolder != <span class="keyword">null</span>) &#123;</span><br><span class="line">			originalTimestamp = propHolder.getRefreshTimestamp();</span><br><span class="line">			<span class="keyword">if</span> (originalTimestamp == -<span class="number">1</span> || originalTimestamp &gt; System.currentTimeMillis() - getCacheMillis()) &#123;</span><br><span class="line">				<span class="comment">// Up to date</span></span><br><span class="line">				<span class="keyword">return</span> propHolder;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			propHolder = <span class="keyword">new</span> PropertiesHolder();</span><br><span class="line">			PropertiesHolder existingHolder = <span class="keyword">this</span>.cachedProperties.putIfAbsent(filename, propHolder);</span><br><span class="line">			<span class="keyword">if</span> (existingHolder != <span class="keyword">null</span>) &#123;</span><br><span class="line">				propHolder = existingHolder;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// At this point, we need to refresh...</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.concurrentRefresh &amp;&amp; propHolder.getRefreshTimestamp() &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="comment">// A populated but stale holder -&gt; could keep using it.</span></span><br><span class="line">			<span class="keyword">if</span> (!propHolder.refreshLock.tryLock()) &#123;</span><br><span class="line">				<span class="comment">// Getting refreshed by another thread already -&gt;</span></span><br><span class="line">				<span class="comment">// let's return the existing properties for the time being.</span></span><br><span class="line">				<span class="keyword">return</span> propHolder;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			propHolder.refreshLock.lock();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			PropertiesHolder existingHolder = <span class="keyword">this</span>.cachedProperties.get(filename);</span><br><span class="line">			<span class="keyword">if</span> (existingHolder != <span class="keyword">null</span> &amp;&amp; existingHolder.getRefreshTimestamp() &gt; originalTimestamp) &#123;</span><br><span class="line">				<span class="keyword">return</span> existingHolder;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> refreshProperties(filename, propHolder);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">finally</span> &#123;</span><br><span class="line">			propHolder.refreshLock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>存储上是一个标准的 LSM 树，分为内存部分和磁盘部分，内存部分为<strong>跳跃表</strong>(<strong>ConcurrentSkipListMap</strong>),磁盘部分为一个DiskStore,内部为多个DiskFile,都是有序的结构。当客户端不停的写，则直接写入 MemStore, 当内存 MemStore 超过一定的阀值，会触发一次 Flush 操作，将 MemStore 写成一个磁盘文件。当磁盘文件较多时，会进行一次 <strong>Compact</strong> 操作，将多个 DiskFile 合并成一个 DiskFile。DiskFile 应该满足以下两个条件：</p>
 <ul>
-<li>通过刷新的时间戳 refreshTimestamp 判断是否已经过了 cache 的时间，从而进行更新</li>
-<li>concurrentRefresh 字段用于配置是否允许并发刷新，如果允许并发刷新，那么在<strong>需要刷新</strong>并且<strong>不是全新的没有注入数据的 Holder</strong> 的时候没有获取成功锁, 证明别的线程在刷新，当前线程直接返回，不再去刷新数据；如果不允许并发刷新，那么就根据获取锁的顺序依次刷新数据。</li>
-<li>这里在并发刷新的时候，如果是全新的 Holder 那么线程会获取锁并刷新数据后再返回</li>
-<li>通过以上两点来保证线程安全和数据安全</li>
-<li>在获取到锁之后还会再次从 map 中获取最新的 Holder 并对比刷新时间，如果刷新时间大于之前获取的 Holder 的刷新时间，那么证明该 Holder 是别的线程刷新完成并放入的最新的 Holder，此时便没有必要再次刷新了，直接返回。这里为什么说对比刷新时间就能得知是否是已经刷新过的，并且是数据完全的不会 NPE 的呢，是因为 Holder 里面的 refreshTime 是 volatile 的，并且是在数据处理并加载到 map 完成后最后一步才更新的 refreshTime，因此可以保证线程之间的可见性。</li>
-<li>ReloadableResourceBundleMessageSource 中 properties 文件的读取和国际化都是类内部自己实现的，包括了计算文件名等。</li>
+<li>支持高效的写入和读取</li>
+<li>由于磁盘空间大，内存空间小，DiskFile 应该支持划分多个块，一次IO读取一个块，由此来做区间扫描</li>
 </ul>
-<h2 id="3-ResourceBundleMessageSource"><a href="#3-ResourceBundleMessageSource" class="headerlink" title="3. ResourceBundleMessageSource"></a>3. ResourceBundleMessageSource</h2><p><strong>类结构图</strong></p>
-<img src="/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-bf6cf60c.png" class="" title="ResourceBundleMessageSource">
+<img src="/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-a34ffae8.png" class="" title="HBase数据DiskFile结构">
 
-<p>从类结构图可以看出其也是带有层次结构的 MessageSource，但不是从 ResourceLoader 加载资源了。另外，该类的国际化资源加载使用的是 java 的 ResourceBundle 来实现。并且不支持缓存失效重新加载。所以在该类进行设置缓存时间无效。</p>
+<p>DiskFile 分为三个部分，<strong>MetaBlock, IndexBlock, DataBlock</strong></p>
+<ol>
+<li><strong>MetaBlock</strong>:一个 DiskFile 中只有一个 MetaBlock, 且是定长的，可以直接通过长度定位直接读取，无需索引。MetaBlock 主要存储了以下信息：<ul>
+<li><strong>fileSize</strong> 文件的长度</li>
+<li><strong>blockCount</strong>:该 DiskFile 拥有的 Block 数量</li>
+<li><strong>blockIndexOffset</strong>:IndexBlock 的偏移量，方便直接读取到 IndexBlock</li>
+<li><strong>BlockIndexSize</strong>:IndexBlock 的字节长度</li>
+</ul>
+</li>
+<li><strong>IndexBlock</strong>:一个 DiskFile 只有一个 IndexBlock ，用于索引 DataBlock<ul>
+<li><strong>lastKV</strong>:一个 DataBlock 的最后一个 KV</li>
+<li><strong>offset</strong>:该 DataBlock 在 DiskFile 中的偏移位置</li>
+<li><strong>size</strong>:该 DataBlock 的长度</li>
+<li><strong>bloomFilter</strong>:该 DataBlock 的 bloom 过滤器，用于优化查找 DataBlock</li>
+</ul>
+</li>
+<li><strong>DataBlock</strong>: 存储数据的主要位置，存储了 KeyValue 集合，有序，默认每个 block 大小 64KB</li>
+</ol>
+<h2 id="KeyValue-结构"><a href="#KeyValue-结构" class="headerlink" title="KeyValue 结构"></a>KeyValue 结构</h2><p>LSM 树中存储的是多个 KeyValue 组成的集合，一个 KeyValue 使用一个字节数组来记录， KeyValue 结构如下:</p>
+<img src="/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-d5d5457f.png" class="" title="HBase KeyValue 结构">
+
+<p>其中，RowKey, family, qualifier, timestamp, type 为 Key，其中 Type 字段存储了当前操作的类型，HBase 中有 Put, Delete, DeleteColumn, DeleteFamily, 可以看出 KeyValue 实际上是记录的当前操作日志，以 timestamp 作为版本区分。</p>
+<p>Type 和 timestamp 在上一节中说的 Compact 操作起作用，Compact 会使用<strong>多路归并算法</strong>(参考归并排序中的归并操作)将多个文件合并，归并的时候，会进行 KeyValue 的大小对比，保证 DiskFile 的内容有序性。KeyValue 的大小对比如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(KeyValue a, KeyValue b)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret = Bytes.compare(a.rowKeyBytes, b.rowKeyBytes);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>) <span class="keyword">return</span> ret;</span><br><span class="line">  ret = Bytes.compare(a.familyBytes, b.familyBytes);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>) <span class="keyword">return</span> ret;</span><br><span class="line">  ret = Bytes.compare(a.qualif ierBytes, b.qualif ierBytes);</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>) <span class="keyword">return</span> ret;</span><br><span class="line">  <span class="comment">// 注意：timestamp越大，排序越靠前</span></span><br><span class="line">  ret = b.timestamp - a.timestamp;</span><br><span class="line">  <span class="keyword">if</span>(ret != <span class="number">0</span>) <span class="keyword">return</span> ret;</span><br><span class="line">  ret = a.type - b.type;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>KeyValue 的结构和记录形式也让我们看到 HBase 为了保证写性能完成顺序写 HDFS 实际上记录了所有的操作记录，那么查询的时候需要将操作记录扫描出来做多路归并得到 compare result 最大的版本，则是用户当前的数据</p>
+<img src="/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-3d4afddd.png" class="" title="HBase KeyValue 多路归并">
+
+<p>如 A 在多路归并后最大的版本是 Delete，那么这个数据就表示已经被删除了，应该读取不到, B 最大的版本是 Put 101 版本，那么读取到的应该是 101 版本的 value</p>
+<h2 id="Compact"><a href="#Compact" class="headerlink" title="Compact"></a>Compact</h2><p>LSM 树的索引结构本质是<strong>将写入操作全部转化成磁盘的顺序写入</strong>，极大地<strong>提高了写入操作的性能</strong>。但是，这种设计对读取操作是非常不利的，因为需要在读取的过程中，通过归并所有文件来读取所对应的 KV，这是非常消耗 IO 资源的。因此，在 HBase 中设计了异步的 compaction 来降低文件个数，达到提高读取性能的目的。由于 HDFS 只支持文件的顺序写，不支持文件的随机写，而且 HDFS 擅长的场景是大文件存储而非小文件，所以上层 HBase 选择 LSM 树这种索引结构是最合适的。<br>compact 分为两类：</p>
+<ul>
+<li><strong>major compact</strong> 将所有文件进行 compact 合并成一个文件，性能高，耗 IO，适合周期性的跑，能处理全局 Delete，文件最小化</li>
+<li><strong>minor compact</strong> 选中少许 HFile 进行 compact，通过较少的 IO 减少文件个数，提升读性能，少 IO， 但无法处理全局 Delete, 无法彻底清理 Delete 操作</li>
+</ul>
 
         </div>
         <footer class="article-footer">
@@ -298,23 +300,18 @@
             "@type": "Person",
             "name": "Albert"
         },
-        "headline": "spring国际化",
-        "image": "http://www.nieyu.net/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/Spring%E5%9B%BD%E9%99%85%E5%8C%96-0d77898a.png",
-        "keywords": "spring 国际化",
-        "genre": "spring",
-        "datePublished": "2020-01-01",
-        "dateCreated": "2020-01-01",
-        "dateModified": "2020-01-01",
-        "url": "http://www.nieyu.net/2020/01/01/spring国际化/",
-        "description": "1. spring 国际化 MessageSource定义 MessageSource 接口，标识支持国际化的获取资源的方法，Spring 中对 MessageSource 提供了三个实现类，分别是 ReloadableResourceBundleMessageSource、StaticMessageSource 和 ResourceBundleMessageSource。
+        "headline": "HBase数据存储和查询",
+        "image": "http://www.nieyu.net/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-9c514bcb.png",
+        "keywords": "HBase 数据库",
+        "genre": "HBase",
+        "datePublished": "2020-01-04",
+        "dateCreated": "2020-01-04",
+        "dateModified": "2020-01-04",
+        "url": "http://www.nieyu.net/2020/01/04/HBase数据存储和查询/",
+        "description": "存储结构
 
-
-
-实现类
-作用
-
-",
-        "wordCount": 330
+存储上是一个标准的 LSM 树，分为内存部分和磁盘部分，内存部分为跳跃表(ConcurrentSkipListMap),磁盘部分为一个DiskStore,内部为多个DiskFile,都是有序的结构。当客户端不停的写，则直接写入 MemStore, 当内存 MemStore 超过一定的阀值，会触发一次 Flush 操作，将 MemStore 写成一个磁盘文件。当磁盘文件较多时，会进行一次",
+        "wordCount": 293
     }
 </script>
 
@@ -371,20 +368,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
-        <p class="article-nav-title">
-        
-            HBase数据结构及特性
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2020/01/01/G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2020/01/01/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E6%80%A7/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">G1垃圾收集器</p>
+        <p class="article-nav-title">HBase数据结构及特性</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -640,7 +627,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://www.nieyu.net/2020/01/01/spring%E5%9B%BD%E9%99%85%E5%8C%96/';
+    var disqus_url = 'http://www.nieyu.net/2020/01/04/HBase%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E8%AF%A2/';
     
     (function() {
     var dsq = document.createElement('script');
